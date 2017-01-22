@@ -1,0 +1,16 @@
+#!/bin/bash
+set -x
+curl -s -i localhost/.well-known/acme-challenge/nginx |grep "HTTP/1.1 200 OK"  
+returnCode=$?; echo ${returnCode}
+if [ ${returnCode} -ne 0 ]; then
+  echo "nginx-80 does not appear to have started yet, will try again in 5 seconds"
+  sleep 5 
+  exit 1
+fi
+while true; do
+  for i in $(grep server_name /etc/nginx/*.conf |sort -u |awk '{ print $3 }'|awk -F ";" '{ print $1 }'); do 
+    echo $i 
+    /usr/bin/dehydrated -c -d $i 
+  done
+  sleep 86400 
+done
