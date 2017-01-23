@@ -8,7 +8,7 @@ if [ ${returnCode} -ne 0 ]; then
   exit 1
 fi
 while true; do
-  for i in $(grep server_name /etc/nginx/*.conf |sort -u |awk '{ print $3 }'|awk -F ";" '{ print $1 }'); do 
+  for i in $(find /etc/nginx -name *.conf -exec grep server_name {} \; |grep -v localhost |sort -u |awk '{ print $2 }' |awk -F ";" '{ print $1 }'); do
     echo $i 
     /usr/bin/dehydrated -c -d $i 
   done
