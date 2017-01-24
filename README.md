@@ -7,13 +7,13 @@ hydrator uses dehydrated (a Lets's Encrpt ACME client) and nginx to automate cre
 # tl;dr
 
 ```
-mkdir -p __/path/to/nginx/conf.d/__
-cat  << EOF > __/path/to/nginx/conf.d/__default.conf
+mkdir -p /path/to/nginx/conf.d/
+cat  << EOF > /path/to/nginx/conf.d/default.conf
 server {
     listen              443 ssl;
-    server_name       __your.domain.com__;
-    ssl_certificate     /etc/dehydrated/certs/__your.domain.com__/fullchain.pem;
-    ssl_certificate_key /etc/dehydrated/certs/__your.domain.com__/privkey.pem;
+    server_name         your.domain.com;
+    ssl_certificate     /etc/dehydrated/certs/your.domain.com/fullchain.pem;
+    ssl_certificate_key /etc/dehydrated/certs/your.domain.com/privkey.pem;
     location / {
         root   /usr/share/nginx/html;
         index  index.html index.htm;
@@ -21,6 +21,6 @@ server {
 }
 EOF
 docker pull lelandsindt/hydrator
-docker create --name hydrator -v __/path/to/nginx/conf.d/__:/etc/nginx/conf.d/:ro -p 443:443 -p 80:80 lelandsindt/hydrator
+docker create --name hydrator -v /path/to/nginx/conf.d/:/etc/nginx/conf.d/:ro -p 443:443 -p 80:80 lelandsindt/hydrator
 docker start hydrator
 ```
