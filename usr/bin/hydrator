@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 curl -s -i localhost/.well-known/acme-challenge/nginx |grep "HTTP/1.1 200 OK"  
 returnCode=$?; echo ${returnCode}
 if [ ${returnCode} -ne 0 ]; then
@@ -10,7 +10,7 @@ fi
 while true; do
   for i in $(find /etc/nginx -name *.conf -exec grep server_name {} \; |grep -v localhost |sort -u |awk '{ print $2 }' |awk -F ";" '{ print $1 }'); do
     echo $i 
-    /usr/bin/dehydrated -c -d $i 
+    /usr/bin/dehydrated --cron --domain $i --hook /usr/bin/hook.sh
   done
   sleep 86400 
 done
