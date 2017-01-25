@@ -7,10 +7,13 @@ if [ ${returnCode} -ne 0 ]; then
   sleep 5 
   exit 1
 fi
+echo "nginx is running... "
 while true; do
-  for i in $(find /etc/nginx -name *.conf -exec grep server_name {} \; |grep -v localhost |sort -u |awk '{ print $2 }' |awk -F ";" '{ print $1 }'); do
-    echo $i 
-    /usr/bin/dehydrated --cron --domain $i --hook /usr/bin/hook.sh
+  echo "looking for domains (server_name) in /etc/nginx/conf.d/"
+  for i in $(find /etc/nginx/conf.d/ -name *.conf -exec grep server_name {} \; |grep -v localhost |sort -u |awk '{ print $2 }' |awk -F ";" '{ print $1 }'); do
+    echo "hydrating: ${i} "
+    /usr/bin/dehydrated --cron --domain ${i} --hook /usr/bin/hook.sh
   done
+  echo "sleeping for 24 hours"
   sleep 86400 
 done
