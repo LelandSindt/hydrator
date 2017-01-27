@@ -1,4 +1,9 @@
 #!/bin/sh
 exec 2>&1
 source /etc/envvars
-exec /usr/sbin/nginx -c /etc/nginx-80/nginx.conf -g "daemon off;"
+echo " ++++ starting 'nginx -c /etc/nginx-80/nginx.conf' "
+/usr/sbin/nginx -c /etc/nginx-80/nginx.conf -g "daemon off;" 
+if [ $? -ne 0 ]; then
+  echo " ++++ unable to start 'nginx -c /etc/nginx-80/nginx.conf' (sleeping 5 seconds) "
+  sleep 5 
+fi

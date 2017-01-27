@@ -1,18 +1,18 @@
 #!/bin/bash
 #set -x
-curl -s -i localhost/.well-known/acme-challenge/nginx |grep "HTTP/1.1 200 OK"  
-returnCode=$?; echo ${returnCode}
+curl -s -i localhost/.well-known/acme-challenge/nginx |grep "HTTP/1.1 200 OK"  > /dev/null
+returnCode=$?; #echo ${returnCode}
 if [ ${returnCode} -ne 0 ]; then
-  echo "nginx-80 does not appear to have started yet, will try again in 5 seconds"
-  sleep 5 
+  echo "nginx-80 is not responding..."
   exit 1
 fi
-echo "nginx is running... "
+echo "nginx-80 is responding..."
 while true; do
-  echo "looking for domains (server_name) in /etc/nginx/conf.d/"
+  echo "looking for domains (server_name) in /etc/nginx/conf.d/*.conf to hydrate"
   for i in $(find /etc/nginx/conf.d/ -name *.conf -exec grep server_name {} \; |grep -v localhost |sort -u |awk '{ print $2 }' |awk -F ";" '{ print $1 }'); do
     echo "hydrating: ${i} "
     /usr/bin/dehydrated --cron --domain ${i} --hook /usr/bin/hook.sh
+    echo "dehydrated returned: $? "
   done
   echo "sleeping for 24 hours"
   sleep 86400 

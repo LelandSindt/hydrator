@@ -1,4 +1,9 @@
 #!/bin/sh
 exec 2>&1
 source /etc/envvars
-exec /usr/bin/hydrator
+echo " ---- starting hydrator "
+/usr/bin/hydrator
+if [ $? -ne 0 ]; then
+  echo " ---- unable to start hydrator (sleeping 5 seconds) "
+  sleep 5 
+fi

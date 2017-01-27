@@ -1,5 +1,12 @@
 FROM alpine
-RUN apk --update upgrade && apk add --no-cache nginx openssl runit curl bash && rm -rf /var/cache/apk/*
+RUN apk --update upgrade && \
+    apk add --no-cache \
+      nginx \
+      openssl \
+      runit \
+      curl \
+      bash && \
+      rm -rf /var/cache/apk/*
 ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.3.1/dehydrated           /usr/bin/dehydrated
 ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.3.1/docs/examples/config /etc/dehydrated/config
 ADD usr/bin/* /usr/bin/
