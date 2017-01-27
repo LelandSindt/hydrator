@@ -12,13 +12,14 @@ ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.3.1/docs/examples/
 ADD usr/bin/* /usr/bin/
 ADD etc/service/ /etc/service/ 
 ADD etc/nginx-80/* /etc/nginx-80/
+ADD etc/nginx/conf.d/* /etc/nginx/conf.d/
+ADD var/www/hydrated/* /var/www/hydrated/
 RUN chmod 700 -v /usr/bin/dehydrated /usr/bin/hydrator /usr/bin/hook.sh /usr/bin/start_runit && \
     chmod 700 -Rv /etc/service/ && \
     mkdir -p /var/www/dehydrated/ && \
     mkdir -p /run/nginx/ && \
     touch /var/www/dehydrated/nginx && \
-    sed -i 's/80/443/' /etc/nginx/conf.d/default.conf && \
-    chown 0:0 -Rv /usr/bin/dehydrated /usr/bin/hydrator /var/www/dehydrated /etc/nginx-80 /etc/dehydrated /etc/service && \
+    chown 0:0 -Rv /usr/bin/dehydrated /usr/bin/hydrator /var/www/dehydrated /etc/nginx-80 /etc/nginx /etc/dehydrated /etc/service && \
     ln -sfv /dev/stdout /var/log/nginx/access.log && \
     ln -sfv /dev/stderr /var/log/nginx/error.log
 EXPOSE 80 443
