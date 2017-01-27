@@ -18,7 +18,7 @@ server {
     ssl_certificate     /etc/dehydrated/certs/your.domain.com/fullchain.pem;
     ssl_certificate_key /etc/dehydrated/certs/your.domain.com/privkey.pem;
     location / {
-        root   /var/www/dehydrated;
+        root   /var/www/hydrated;
         index  index.html index.htm;
     }
 }
