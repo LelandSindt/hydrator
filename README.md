@@ -31,8 +31,8 @@ docker start hydrator
 
 .... ok now go back and read the following.
 
-[https://letsencrypt.org/docs/](https://letsencrypt.org/docs/)
-[https://github.com/lukas2511/dehydrated](https://github.com/lukas2511/dehydrated)
+* [https://letsencrypt.org/docs/](https://letsencrypt.org/docs/)
+* [https://github.com/lukas2511/dehydrated](https://github.com/lukas2511/dehydrated)
 
 # SSL Offload Proxy
 
