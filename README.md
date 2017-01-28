@@ -43,7 +43,7 @@ in this example we have two back end servers 192.168.100.100 and 192.168.100.101
 ```
 mkdir -p /tmp/path/to/nginx/conf.d/
 cat << EOF > /tmp/path/to/nginx/conf.d/default.conf
-tream backends {
+upstream backends {
     server 192.168.100.100:80;
     server 192.168.100.101:80;
 }
