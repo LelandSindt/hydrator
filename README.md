@@ -29,6 +29,11 @@ docker create --name hydrator -v /tmp/path/to/nginx/conf.d/:/etc/nginx/conf.d/:r
 docker start hydrator
 ```
 
+.... ok now go back and read the following.
+
+[https://letsencrypt.org/docs/](https://letsencrypt.org/docs/)
+[https://github.com/lukas2511/dehydrated](https://github.com/lukas2511/dehydrated)
+
 # SSL Offload Proxy
 
 hydrator can be used to build an SSL Offload Proxy adding an encrypted front end to an un-encrypted application. 
@@ -89,5 +94,5 @@ for every instance of `serer_name` found in /etc/nginx/conf.d/*.conf hydrator wi
 
 ## domains.txt
 
-hydrator will instruct dehydrated to use [domains.txt](https://github.com/lukas2511/dehydrated/blob/master/docs/domains_txt.md) if it is found at /etc/dehydrated/domains.txt 
+hydrator will instruct dehydrated to use [domains.txt](https://github.com/lukas2511/dehydrated/blob/master/docs/domains_txt.md) if it is found at `/etc/dehydrated/domains.txt`
 
