@@ -15,7 +15,7 @@ ADD etc/nginx-80/* /etc/nginx-80/
 ADD etc/nginx/conf.d/* /etc/nginx/conf.d/
 ADD var/www/hydrated/* /var/www/hydrated/
 RUN chmod 700 -v /usr/bin/dehydrated /usr/bin/hydrator /usr/bin/hook.sh /usr/bin/start_runit && \
-    chmod 700 -Rv /etc/service/ && \
+    chmod 700 -Rv /etc/service && \
     mkdir -p /var/www/dehydrated/ && \
     mkdir -p /run/nginx/ && \
     touch /var/www/dehydrated/nginx && \

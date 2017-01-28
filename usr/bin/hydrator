@@ -8,12 +8,18 @@ if [ ${returnCode} -ne 0 ]; then
 fi
 echo "nginx-80 is responding..."
 while true; do
-  echo "looking for domains (server_name) in /etc/nginx/conf.d/*.conf to hydrate"
-  for i in $(find /etc/nginx/conf.d/ -name *.conf -exec grep server_name {} \; |grep -v localhost |sort -u |awk '{ print $2 }' |awk -F ";" '{ print $1 }'); do
-    echo "hydrating: ${i} "
-    /usr/bin/dehydrated --cron --domain ${i} --hook /usr/bin/hook.sh
+  if [ -f /etc/dehydrated/domains.txt ]; then
+    /usr/bin/dehydrated --cron --keep-going --hook /usr/bin/hook.sh
     echo "dehydrated returned: $? "
-  done
+  else 
+    echo "looking for domains (server_name) in /etc/nginx/conf.d/*.conf to hydrate"
+    for i in $(find /etc/nginx/conf.d/ -name *.conf -exec grep server_name {} \; |grep -v localhost |sort -u |awk '{ print $2 }' |awk -F ";" '{ print $1 }'); do
+      echo "hydrating: ${i} "
+      /usr/bin/dehydrated --cron --domain ${i} --hook /usr/bin/hook.sh
+      echo "dehydrated returned: $? "
+    done
+  fi
   echo "sleeping for 24 hours"
   sleep 86400 
 done
+

@@ -5,10 +5,12 @@ hydrator = nginx + dehyrated + Let's Encrypt.
 hydrator uses [dehydrated](https://github.com/lukas2511/dehydrated) (a Lets's Encrypt ACME client) and nginx to automate creation and renewal of SSL Certificates.
 
 
-**Please note that you should use the staging URL when experimenting with this script to not hit letsencrypts [rate limits](https://letsencrypt.org/docs/rate-limits/).** See [https://github.com/lukas2511/dehydrated/tree/master/docs/staging.md](https://github.com/lukas2511/dehydrated/tree/master/docs/staging.md).
 
 
 # tl;dr
+
+**Please note that you should use the staging URL when experimenting with this script to not hit letsencrypts [rate limits](https://letsencrypt.org/docs/rate-limits/).** See [https://github.com/lukas2511/dehydrated/tree/master/docs/staging.md](https://github.com/lukas2511/dehydrated/tree/master/docs/staging.md).
+
 ```
 mkdir -p /tmp/path/to/nginx/conf.d/
 cat  << EOF > /tmp/path/to/nginx/conf.d/default.conf
