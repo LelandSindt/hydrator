@@ -90,7 +90,7 @@ EOF
 
 ## server_name
 
-for every instance of `serer_name` found in /etc/nginx/conf.d/*.conf hydrator will call `dehydrated --domain your.domain.com` 
+for every instance of `server_name` found in /etc/nginx/conf.d/*.conf hydrator will call `dehydrated --domain your.domain.com` 
 
 ## domains.txt
 
