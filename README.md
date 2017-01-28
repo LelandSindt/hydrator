@@ -6,7 +6,7 @@ hydrator uses [dehydrated](https://github.com/lukas2511/dehydrated) (a Lets's En
 
 # Read this!
 
-**Please note that you should use the staging URL when experimenting with this script to not hit letsencrypts [rate limits](https://letsencrypt.org/docs/rate-limits/).** See [https://github.com/lukas2511/dehydrated/tree/master/docs/staging.md](https://github.com/lukas2511/dehydrated/tree/master/docs/staging.md).
+**Please note that you should use the staging URL when experimenting with this project to not hit letsencrypts [rate limits](https://letsencrypt.org/docs/rate-limits/).** See [https://github.com/lukas2511/dehydrated/tree/master/docs/staging.md](https://github.com/lukas2511/dehydrated/tree/master/docs/staging.md).
 
 
 # tl;dr
@@ -81,13 +81,13 @@ CONTACT_EMAIL=you@your.domain.com
 EOF
 ```
 
-## Domains  
+# Domains  
 
-# server_name
+## server_name
 
 for every instance of `serer_name` found in /etc/nginx/conf.d/*.conf hydrator will call `dehydrated --domain your.domain.com` 
 
-# domains.txt
+## domains.txt
 
 hydrator will instruct dehydrated to use [domains.txt](https://github.com/lukas2511/dehydrated/blob/master/docs/domains_txt.md) if it is found at /etc/dehydrated/domains.txt 
 
