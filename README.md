@@ -52,7 +52,6 @@ server {
     server_name         your.domain.com;
     ssl_certificate     /etc/dehydrated/certs/your.domain.com/fullchain.pem;
     ssl_certificate_key /etc/dehydrated/certs/your.domain.com/privkey.pem;
-    ssl_session_cache   builtin:1000  shared:SSL:10m;
     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers         HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
     ssl_prefer_server_ciphers on;
