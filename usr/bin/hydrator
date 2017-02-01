@@ -13,7 +13,7 @@ while true; do
     echo "dehydrated returned: $? "
   else 
     echo "looking for domains (server_name) in /etc/nginx/conf.d/*.conf to hydrate"
-    for i in $(find /etc/nginx/conf.d/ -name *.conf -exec grep server_name {} \; |grep -v localhost |sort -u |awk '{ print $2 }' |awk -F ";" '{ print $1 }'); do
+    for i in $(find /etc/nginx/conf.d/ -name *.conf -exec grep server_name {} \; |grep -v localhost |awk '{ print $2 }' |awk -F ";" '{ print $1 }' |sort -u ); do
       echo "hydrating: ${i} "
       /usr/bin/dehydrated --cron --domain ${i} --hook /usr/bin/hook.sh --config /etc/dehydrated/config --out /etc/dehydrated/certs
       echo "dehydrated returned: $? "
