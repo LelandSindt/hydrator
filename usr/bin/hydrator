@@ -7,18 +7,19 @@ if [ ${returnCode} -ne 0 ]; then
   exit 1
 fi
 echo "nginx-80 is responding..."
+/usr/bin/dehydrated --register --accept-terms
 while true; do
   if [ -f /etc/dehydrated/domains.txt ]; then
+    echo "using /etc/dehydrated/domains.txt "
     /usr/bin/dehydrated --cron --keep-going --hook /usr/bin/hook.sh --config /etc/dehydrated/config --out /etc/dehydrated/certs
-    echo "dehydrated returned: $? "
   else 
     echo "looking for domains (server_name) in /etc/nginx/conf.d/*.conf to hydrate"
     for i in $(find /etc/nginx/conf.d/ -name *.conf -exec grep server_name {} \; |grep -v localhost |awk '{ print $2 }' |awk -F ";" '{ print $1 }' |sort -u ); do
       echo "hydrating: ${i} "
       /usr/bin/dehydrated --cron --domain ${i} --hook /usr/bin/hook.sh --config /etc/dehydrated/config --out /etc/dehydrated/certs
-      echo "dehydrated returned: $? "
     done
   fi
+  echo "dehydrated returned: $? "
   echo "sleeping for 24 hours"
   sleep 86400 
 done

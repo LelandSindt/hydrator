@@ -7,8 +7,8 @@ RUN apk --update upgrade && \
       curl \
       bash && \
       rm -rf /var/cache/apk/*
-ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.3.1/dehydrated           /usr/bin/dehydrated
-ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.3.1/docs/examples/config /etc/dehydrated/config
+ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.4.0/dehydrated           /usr/bin/dehydrated
+ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.4.0/docs/examples/config /etc/dehydrated/config
 ADD usr/bin/* /usr/bin/
 ADD etc/service/ /etc/service/ 
 ADD etc/nginx-80/* /etc/nginx-80/
