@@ -2,6 +2,7 @@ FROM alpine
 RUN apk --update upgrade && \
     apk add --no-cache \
       nginx \
+      nginx-mod-http-lua \
       openssl \
       runit \
       curl \
@@ -9,6 +10,7 @@ RUN apk --update upgrade && \
       rm -rf /var/cache/apk/*
 ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.4.0/dehydrated           /usr/bin/dehydrated
 ADD https://raw.githubusercontent.com/lukas2511/dehydrated/v0.4.0/docs/examples/config /etc/dehydrated/config
+ADD https://raw.githubusercontent.com/knyar/nginx-lua-prometheus/0.1-20170610/prometheus.lua /usr/bin/prometheus.lua
 ADD usr/bin/* /usr/bin/
 ADD etc/service/ /etc/service/ 
 ADD etc/nginx-80/* /etc/nginx-80/
