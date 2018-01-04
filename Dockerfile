@@ -24,5 +24,5 @@ RUN chmod 700 -v /usr/bin/dehydrated /usr/bin/hydrator /usr/bin/hook.sh /usr/bin
     chown 0:0 -Rv /usr/bin/dehydrated /usr/bin/hydrator /var/www/dehydrated /etc/nginx-80 /etc/nginx /etc/dehydrated /etc/service && \
     ln -sfv /dev/stdout /var/log/nginx/access.log && \
     ln -sfv /dev/stderr /var/log/nginx/error.log
-EXPOSE 80 443
+EXPOSE 80 443 9145
 ENTRYPOINT ["usr/bin/start_runit"]
