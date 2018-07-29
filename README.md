@@ -1,5 +1,7 @@
 # hydrator
 
+Note: This projects is no longer maintained. Consider using http://proxy.dockerflow.com/ or https://github.com/jwilder/nginx-proxy 
+
 hydrator = nginx + dehyrated + Let's Encrypt.
 
 hydrator uses [dehydrated](https://github.com/lukas2511/dehydrated) (a Lets's Encrypt ACME client) and nginx to automate creation and renewal of SSL Certificates.
