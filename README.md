@@ -1,6 +1,6 @@
-# hydrator
+# Note: This projects is no longer maintained. Consider using http://proxy.dockerflow.com/ or https://github.com/jwilder/nginx-proxy 
 
-Note: This projects is no longer maintained. Consider using http://proxy.dockerflow.com/ or https://github.com/jwilder/nginx-proxy 
+# hydrator
 
 hydrator = nginx + dehyrated + Let's Encrypt.
 
